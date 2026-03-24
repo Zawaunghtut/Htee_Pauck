@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ဦးပုည ထီပေါက်ကိန်း | မြန်မာ့ရိုးရာ ထီတွက်စက်</title>
+    <!-- Google Fonts & Burmese Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #faf3e0 0%, #f7e9d7 100%);
+            font-family: 'Inter', 'Noto Sans Myanmar', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* traditional pattern overlay (subtle) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.08"><path fill="%23b37b2e" d="M20,20 L30,15 L40,20 L35,30 L40,40 L30,45 L20,40 L15,30 L20,20Z M70,70 L80,65 L90,70 L85,80 L90,90 L80,95 L70,90 L65,80 L70,70Z M45,80 L55,75 L65,80 L60,88 L65,95 L55,92 L45,95 L40,88 L45,80Z"/><circle cx="80" cy="25" r="4" fill="%23b37b2e"/><circle cx="25" cy="75" r="3.5" fill="%23b37b2e"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            z-index: 2;
+            max-width: 580px;
+            width: 100%;
+            background: rgba(255, 253, 245, 0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 48px 32px 48px 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* header with decorative gold line */
+        .hero {
+            background: linear-gradient(135deg, #8b2c1a 0%, #a33c24 100%);
+            padding: 1.8rem 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Noto Sans Myanmar', 'Inter', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #FFE6B3;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0 #4e1a0e;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero h1 i {
+            font-size: 2rem;
+            color: #F9C851;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+
+        .hero p {
+            color: #FFE0A3;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* main content */
+        .content {
+            padding: 2rem 2rem 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #4a2a1a;
+            margin-bottom: 10px;
+            font-family: 'Noto Sans Myanmar', 'Inter', sans-serif;
+        }
+
+        label i {
+            color: #b87c2e;
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1rem;
+            font-family: 'Inter', 'Noto Sans Myanmar', monospace;
+            background: #fffef7;
+            border: 1.5px solid #e9dbc9;
+            border-radius: 28px;
+            transition: all 0.2s ease;
+            outline: none;
+            color: #2d2418;
+            font-weight: 500;
+        }
+
+        input:focus, select:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+            background-color: #ffffff;
+        }
+
+        /* custom select arrow */
+        select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%238b3c1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 9 12 15 18 9"></polygon></svg>');
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 16px;
+        }
+
+        .input-hint {
+            font-size: 0.7rem;
+            color: #a57c52;
+            margin-top: 6px;
+            margin-left: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        button {
+            background: linear-gradient(95deg, #9e3b24, #7a2c1a);
+            border: none;
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-family: 'Noto Sans Myanmar', 'Inter', sans-serif;
+            color: #fff3df;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 18px rgba(128, 0, 0, 0.3);
+            margin-top: 12px;
+        }
+
+        button i {
+            font-size: 1.3rem;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(95deg, #b34428, #8a311b);
+            transform: scale(1.01);
+            box-shadow: 0 10px 22px rgba(128, 0, 0, 0.4);
+        }
+
+        button:hover i {
+            transform: translateX(4px);
+        }
+
+        /* result panel */
+        .result-panel {
+            margin-top: 28px;
+            padding: 0;
+            border-radius: 28px;
+            background: #fef6ea;
+            transition: all 0.3s ease;
+            display: none;
+            overflow: hidden;
+            border: 1px solid #eedcb0;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+            animation: fadeSlideUp 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-header {
+            padding: 1.2rem 1.5rem 0.6rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px dashed #e9cf9b;
+        }
+
+        .result-body {
+            padding: 1.2rem 1.5rem 1.5rem;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        .winner-badge {
+            background: #2c6e2c;
+            color: #F9E7B3;
+            border-radius: 40px;
+            padding: 6px 18px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+
+        .neutral-badge {
+            background: #c97e2a;
+            color: #fff0d4;
+        }
+
+        .remainder-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: rgba(212, 175, 55, 0.2);
+            display: inline-block;
+            padding: 0 0.8rem;
+            border-radius: 60px;
+            letter-spacing: 2px;
+            font-family: monospace;
+        }
+
+        /* footer */
+        .footer-note {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #b58b5a;
+            border-top: 1px solid #eedbbc;
+            padding-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-note i {
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                border-radius: 32px 24px 32px 24px;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .content {
+                padding: 1.6rem;
+            }
+            button {
+                padding: 14px;
+                font-size: 1.1rem;
+            }
+            .result-header {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* shimmer effect for gold */
+        .gold-text {
+            color: #c9a03d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="hero">
+        <h1>
+            <i class="fas fa-crown"></i> 
+            ဦးပုည ထီပေါက်ကိန်း
+            <i class="fas fa-dice-d6"></i>
+        </h1>
+        <p>✦ ရှေးမြန်မာ့ဂြိုဟ်သက်တမ်း နည်းစနစ် ✦</p>
+    </div>
+
+    <div class="content">
+        <div class="form-group">
+            <label><i class="fas fa-calendar-alt"></i> မြန်မာနှစ် (သက္ကရာဇ်)</label>
+            <input type="number" id="myanmarYear" placeholder="ဥပမာ - ၁၃၈၅" value="1385" step="1">
+            <div class="input-hint"><i class="fas fa-moon"></i> လက်ရှိမြန်မာနှစ် ထည့်ပါ</div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-star-of-life"></i> မွေးနေ့ (ရက်သတ္တပတ်)</label>
+            <select id="birthday">
+                <option value="6">🌞 တနင်္ဂနွေ (နေ)</option>
+                <option value="15">🌙 တနင်္လာ (လ)</option>
+                <option value="8">🔥 အင်္ဂါ (အင်္ဂါ)</option>
+                <option value="17">📿 ဗုဒ္ဓဟူး (နံနက်ပိုင်း)</option>
+                <option value="12">🌑 ရာဟု (ဗုဒ္ဓဟူး မွန်းလွဲ)</option>
+                <option value="19">⭐ ကြာသပတေး (ဂုရု)</option>
+                <option value="21">💎 သောကြာ (သောကြာ)</option>
+                <option value="10">🪐 စနေ (စနေ)</option>
+            </select>
+            <div class="input-hint"><i class="fas fa-hand-sparkles"></i> မွေးနေ့ဂြိုဟ်အလိုက် ရွေးပါ</div>
+        </div>
+
+        <div class="form-group">
+            <label><i class="fas fa-hourglass-half"></i> လက်ရှိ ရောက်သက် (အသက်)</label>
+            <input type="number" id="age" placeholder="ဥပမာ - ၂၅" value="25" min="1" max="120">
+            <div class="input-hint"><i class="fas fa-calculator"></i> ယခုနှစ်အတွင်း ပြည့်သောအသက်</div>
+        </div>
+
+        <button onclick="calculateLuck()">
+            <i class="fas fa-chart-line"></i> တွက်ချက်မည် <i class="fas fa-hand-peace"></i>
+        </button>
+
+        <div id="result" class="result-panel"></div>
+
+        <div class="footer-note">
+            <span><i class="fas fa-copyright"></i> ဆရာကြီးဦးပုည နည်းစနစ်ကို အခြေခံထား</span>
+            <span><i class="fas fa-chart-simple"></i> ထီကံအတွက် ဖျော်ဖြေမှုသာ ရည်ရွယ်ပါသည်။</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateLuck() {
+        // DOM elements
+        const myanmarYearInput = document.getElementById('myanmarYear');
+        const birthdaySelect = document.getElementById('birthday');
+        const ageInput = document.getElementById('age');
+        const resultDiv = document.getElementById('result');
+
+        // get values
+        let myanmarYear = parseInt(myanmarYearInput.value);
+        let birthdayValue = parseInt(birthdaySelect.value);
+        let age = parseInt(ageInput.value);
+
+        // validation
+        if (isNaN(myanmarYear) || myanmarYear <= 0) {
+            alert("ကျေးဇူးပြု၍ ခုနှစ် (မြန်မာနှစ်) ကို မှန်ကန်စွာ ဖြည့်ပါ။");
+            myanmarYearInput.focus();
+            return;
+        }
+        if (isNaN(birthdayValue) || birthdayValue === null) {
+            alert("မွေးနေ့ (ဂြိုဟ်နေ့) ရွေးချယ်ပါ။");
+            return;
+        }
+        if (isNaN(age) || age <= 0 || age > 120) {
+            alert("ကျေးဇူးပြု၍ လက်ရှိအသက် (ရောက်သက်) ကို မှန်ကန်စွာ ဖြည့်ပါ။");
+            ageInput.focus();
+            return;
+        }
+
+        // 1) မွေးဖွားတဲ့ မူလမြန်မာသက္ကရာဇ်တည် + ဂြိုဟ်သက်ပေါင်း
+        let totalBase = myanmarYear + birthdayValue;
+
+        // 2) ၄၃ ဖြင့်စား ရှာသော စားကြွင်း
+        let step3Remainder = totalBase % 43;
+
+        // 3) ရောက်သက် (အသက်) ပေါင်းထည့်
+        let finalSum = step3Remainder + age;
+
+        // 4) ၇ နှင့်စား နောက်ဆုံးကြွင်း
+        let finalRemainder = finalSum % 7;
+
+        // ရလဒ်ပြသရန် dynamic styling
+        resultDiv.style.display = "block";
+        
+        // clear previous content & add smooth effect
+        resultDiv.innerHTML = "";
+
+        // helper to build winner / neutral card
+        let headerIcon = "";
+        let mainMessage = "";
+        let remainderDisplay = finalRemainder;
+        let badgeClass = "";
+        let extraAdvice = "";
+
+        // Condition based on final remainder (0 and 5 are lucky per original logic)
+        if (finalRemainder === 5) {
+            badgeClass = "winner-badge";
+            headerIcon = "<i class='fas fa-trophy' style='font-size: 2rem; color:#FFD966;'></i>";
+            mainMessage = `<span class="winner-badge" style="background:#1f5e2d;"><i class="fas fa-gem"></i> ကံထူးချိန် 🍀</span>
+                           <div style="margin-top: 15px; font-weight: bold; font-size: 1.2rem;">တစ်ဦးတည်းထိုး ပေါက်မည်။</div>
+                           <p style="margin-top: 10px;">ထီကံအလွန်ကောင်းသော အချိန်ဖြစ်သည်။ ယုံကြည်မှုအပြည့်ဖြင့် ထီတစ်စောင်တည်း ထိုးလိုက်ပါ။</p>`;
+            extraAdvice = `<div class="input-hint" style="margin-top: 12px; color:#2d5a2c;"><i class="fas fa-coins"></i> ရွှေရောင်နေ့ရက် — ကံအလှူခံထိုက်ဆုံးအချိန်</div>`;
+        } 
+        else if (finalRemainder === 0) {
+            badgeClass = "winner-badge";
+            headerIcon = "<i class='fas fa-handshake' style='font-size: 2rem; color:#FFC857;'></i>";
+            mainMessage = `<span class="winner-badge" style="background:#b87c2e;"><i class="fas fa-users"></i> စပ်တူထိုးရန် အကောင်းဆုံး</span>
+                           <div style="margin-top: 15px; font-weight: bold; font-size: 1.2rem;">စပ်တူထိုးပါ ပေါက်မည်။</div>
+                           <p style="margin-top: 10px;">မိတ်ဆွေများ၊ မိသားစုနှင့် တွဲဖက်ကံကောင်းမည်။ ယုံကြည်ရသူနှင့် ပူးပေါင်း၍ ထီထိုးပါ။</p>`;
+            extraAdvice = `<div class="input-hint" style="margin-top: 12px; color:#a5642a;"><i class="fas fa-hand-holding-heart"></i> ပူးပေါင်းကံသည် ပွင့်လန်းစေမည်</div>`;
+        }
+        else {
+            badgeClass = "neutral-badge";
+            headerIcon = "<i class='fas fa-cloud-moon' style='font-size: 1.8rem; color:#b87c3e;'></i>";
+            mainMessage = `<span class="winner-badge neutral-badge" style="background:#b4752a;"><i class="fas fa-leaf"></i> ကံအလယ်အလတ်</span>
+                           <div style="margin-top: 15px; font-weight: 500;">ထီကံ အလယ်အလတ်သာ ရှိသည်။</div>
+                           <p style="margin-top: 8px;">အခြားသော ကံမြှင့်ဂါထာများ ရွတ်ဖတ်ပါ။ စိတ်အေးလက်အေး ထိုးပါက မမျှော်လင့်ဘဲ ကံကောင်းနိုင်ပါသည်။</p>`;
+            extraAdvice = `<div class="input-hint" style="margin-top: 12px;"><i class="fas fa-spa"></i> စေတနာဖြူစင်ခြင်းက ကံကို မြှင့်တင်ပေးနိုင်</div>`;
+        }
+
+        // Build elegant result card
+        const resultHTML = `
+            <div class="result-header">
+                ${headerIcon}
+                <span style="font-size: 1.3rem; font-weight: 700;">ရလဒ် ကြွင်း ( ${finalRemainder} )</span>
+            </div>
+            <div class="result-body">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+                    <div><span class="remainder-number">${finalRemainder}</span> <span style="font-weight: 500;">/ 7</span></div>
+                    <div class="${badgeClass}"><i class="fas fa-chart-simple"></i> ထီခန့်မှန်းချက်</div>
+                </div>
+                ${mainMessage}
+                ${extraAdvice}
+                <hr style="margin: 18px 0 8px; border-color: #eedbbc;">
+                <div style="font-size: 0.75rem; display: flex; justify-content: space-between; color:#7e5a3a;">
+                    <span><i class="fas fa-calculator"></i> (${myanmarYear} + ${birthdayValue}) % 43 = ${step3Remainder}</span>
+                    <span><i class="fas fa-plus-circle"></i> အသက် ${age} → ${step3Remainder + age} % 7 = ${finalRemainder}</span>
+                </div>
+            </div>
+        `;
+
+        resultDiv.innerHTML = resultHTML;
+
+        // smooth scroll to result (optional)
+        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // optional: allow enter key to trigger calculation
+    const inputs = document.querySelectorAll('#myanmarYear, #age, #birthday');
+    inputs.forEach(input => {
+        input.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                calculateLuck();
+            }
+        });
+    });
+</script>
+</body>
+</html>
